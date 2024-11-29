@@ -1,0 +1,27 @@
+##cmds-todo
+
+----
+*Topics : -
+
+-create topic
+bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic myTopic --partitions 1 --replication-factor 1
+
+
+bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
+
+bin/kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic myTopic
+
+
+-create producer 
+bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic myTopic
+
+-create consumer
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic myTopic --from-beginning
+
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic myTopic --group myConsumerGroup
+
+bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --list
+
+bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group [group-name]
+
+( This default topic __consumer_offsets has all cosumers info)
