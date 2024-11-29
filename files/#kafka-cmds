@@ -1,0 +1,36 @@
+# kafka cmds
+
+
+----
+
+*zookeeper
+
+-start zookeeper server
+bin/zkServer.sh start
+bin/zkServer.sh start-foreground   	
+
+
+-check server status:-
+echo stat | nc localhost 2181
+
+--stop
+bin/zkServer.sh stop
+
+
+-----
+*kafka
+
+-start
+bin/kafka-server-start.sh config/server.properties  (foreground)
+
+bin/kafka-server-start.sh -daemon  config/server.properties (background)
+
+
+- to check kafka connected to zoo keeper (asking broker)
+echo dump | nc localhost 2181 | grep brokers
+
+	
+
+-stop
+bin/kafka-server-stop.sh 
+

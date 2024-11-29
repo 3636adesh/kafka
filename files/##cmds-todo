@@ -64,3 +64,9 @@ cat /tmp/zookeeper-1/myid
 
 
 --three kafka clusters
+
+use if cluster not started
+rm /tmp/kafka-logs-1/meta.properties
+
+bin/kafka-topics.sh --bootstrap-server localhost:9092,localhost:9093,localhost:9094 --create --topic myTopic-3 --partitions 3 --replication-factor 3
+bin/kafka-topics.sh --bootstrap-server localhost:9092,localhost:9093,localhost:9094 --describe --topic myTopic-3
