@@ -1,6 +1,6 @@
 ##cmds-todo
 
-----
+--------------------------
 *Topics : -
 
 -create topic
@@ -11,9 +11,12 @@ bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
 
 bin/kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic myTopic
 
-
+*Producers :- 
 -create producer 
 bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic myTopic
+
+
+*Consumers :- 
 
 -create consumer
 bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic myTopic --from-beginning
@@ -25,3 +28,39 @@ bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --list
 bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group [group-name]
 
 ( This default topic __consumer_offsets has all cosumers info)
+
+
+
+-------------------------
+*multi-configurations
+
+
+-three nodes of zookeeper
+
+->
+tickTime=2000
+initLimit=10
+syncLimit=5
+dataDir=/tmp/zookeeper-1
+clientPort=2181
+4lw.commands.whitelist=*
+
+
+server.1=localhost:2788:3788
+server.1=localhost:2888:3888
+server.1=localhost:2988:3988
+
+admin.serverPort=8082
+<-
+
+mkdir -p /tmp/zookeeper-1 /tmp/zookeeper-2 /tmp/zookeeper-3
+
+echo 1 >> /tmp/zookeeper-1/myid
+echo 2 >> /tmp/zookeeper-2/myid
+echo 3 >> /tmp/zookeeper-3/myid
+
+-checking
+cat /tmp/zookeeper-1/myid 
+
+
+--three kafka clusters
