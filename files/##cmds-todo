@@ -6,12 +6,16 @@
 -create topic
 bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic myTopic --partitions 1 --replication-factor 1
 
+-reassigning --> (we can increase partations but not descrease)
+bin/kafka-topics.sh --bootstrap-server localhost:9092 --alter --topic myTopic --partitions 2
+
 
 bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
 
 bin/kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic myTopic
 
 *Producers :- 
+
 -create producer 
 bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic myTopic
 

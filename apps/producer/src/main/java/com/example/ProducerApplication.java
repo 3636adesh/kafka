@@ -1,7 +1,6 @@
 package com.example;
 
 import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.boot.SpringApplication;
@@ -24,7 +23,7 @@ public class ProducerApplication {
         SpringApplication.run(ProducerApplication.class, args);
     }
 
-    final static String PAGE_VIEWS_TOPIC = "page-views";
+    static final String PAGE_VIEWS_TOPIC = "page-views";
 
 }
 
@@ -33,16 +32,14 @@ public class ProducerApplication {
 class RunnerConfig {
 
 
-    void kafka(KafkaTemplate<Object,Object> template) {
-        var pageView = new PageView("index.html",190L,"@adesh","github");
+    void kafka(KafkaTemplate<Object, Object> template) {
+        var pageView = new PageView("index.html", 190L, "@adesh", "github");
         template.send(ProducerApplication.PAGE_VIEWS_TOPIC, pageView);
     }
 
     @Bean
-    ApplicationListener<ApplicationReadyEvent> runnerListener(KafkaTemplate<Object,Object> template) {
-        return event -> {
-            kafka(template);
-        };
+    ApplicationListener<ApplicationReadyEvent> runnerListener(KafkaTemplate<Object, Object> template) {
+        return event -> kafka(template);
     }
 }
 
