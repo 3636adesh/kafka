@@ -6,7 +6,7 @@
 -create topic
 bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic myTopic --partitions 1 --replication-factor 1
 
--reassigning --> (we can increase partations but not descrease)
+-reassigning --> (we can increase partitions but not decrease)
 bin/kafka-topics.sh --bootstrap-server localhost:9092 --alter --topic myTopic --partitions 2
 
 
@@ -31,7 +31,7 @@ bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --list
 
 bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group [group-name]
 
-( This default topic __consumer_offsets has all cosumers info)
+( This default topic __consumer_offsets has all consumers info)
 
 
 
