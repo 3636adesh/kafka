@@ -1,0 +1,44 @@
+
+-- manage by controller node (this info store at zookeepr)
+
+*partation-reassigment
+
+-Generate
+bin/kafka-reassign-partitions.sh --bootstrap-server localhost:9092 --topics-to-move-json-file topicsToMove.json --broker-list "2,3" --generate
+
+--topics-to-move.json file
+{
+  "topics": [
+    {
+      "topic": "myTopic"
+    }
+  ],
+  "version": 1
+
+
+-- after that you get one JSON file name it as suggeted.json  (you can that json for replica)
+--e.g
+{
+    "version": 1,
+    "partitions": [
+      {
+        "topic": "test-topic",
+        "partition": 0,
+        "replicas": [2,3]
+      },
+      {
+        "topic": "test-topic",
+        "partition": 1,
+        "replicas": [1,2]
+      }
+    ]
+  }
+
+
+-Execute
+bin/kafka-reassign-partitions.sh --bootstrap-server localhost:9092 --reassignment-json-file suggeted.json --execute
+
+-Verify
+bin/kafka-reassign-partitions.sh --bootstrap-server localhost:9092 --reassignment-json-file suggeted.json --verify
+
+
