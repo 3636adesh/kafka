@@ -1,0 +1,12 @@
+== sample-one
+simple producer and consumer -> producer send `Foo1` amd consumer receive `Foo2` (object have same fields).
+
+producer uses `JsonSerializer` and consumer uses the `ByteArrayDeserializer` , together with `JsonMessageConverter` which convert a type into listener method argument.
+
+
+
+Run the application and use curl to send some data:
+
+`$ curl -X POST http://localhost:8080/send/foo/bar`
+
+Console -
